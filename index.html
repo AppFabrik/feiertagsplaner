@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Mitarbeiter-Verfügbarkeit und Arbeitszeiten für Weihnachten und Silvester">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Feiertagsplaner · Team</title>
+<style>
+:root{--bg:#f4f6fb;--ink:#172033;--muted:#69758a;--line:#e4e9f1;--card:#fff;--navy:#101827;--blue:#526dff;--mint:#dff8ee;--green:#087e59;--red:#b83c52;--amber:#a96712;--shadow:0 14px 40px rgba(25,38,67,.08)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0%,#e8edff 0,transparent 28rem),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+header{background:var(--navy);color:#fff;padding:24px max(20px,calc((100vw - 1060px)/2));position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:linear-gradient(135deg,#647cff,#36d6ad);opacity:.22;right:8%;top:-150px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:1}.brand{display:flex;gap:12px;align-items:center}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#7185ff,#39d6b0);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 20px #0003}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#aeb9d0;font-weight:800}.brand h1{font-size:20px;margin:2px 0 0;letter-spacing:-.03em}.year{border:1px solid #ffffff30;border-radius:999px;padding:8px 12px;font-size:12px;color:#d9e0f1;white-space:nowrap}
+.hero{position:relative;z-index:1;margin-top:26px;max-width:700px}.hero h2{font-size:clamp(27px,5vw,40px);line-height:1.06;letter-spacing:-.045em;margin:0 0 10px}.hero p{color:#bac5d9;margin:0;font-size:14px;line-height:1.55}
+main{max-width:1060px;margin:26px auto 70px;padding:0 18px}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);gap:18px;align-items:start}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:22px}.cardhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}.cardhead h3{font-size:17px;margin:0;letter-spacing:-.02em}.sub{font-size:12px;color:var(--muted);margin:5px 0 0}.step{font-size:11px;font-weight:800;color:#526dff;background:#eef0ff;border-radius:999px;padding:7px 10px}
+label{display:block;font-size:12px;font-weight:750;color:#435069;margin:0 0 7px}.field{margin-bottom:16px}input,select,textarea{width:100%;border:1px solid #dce2ed;border-radius:12px;padding:12px 13px;background:#fbfcff;color:var(--ink);font:inherit;font-size:14px;outline:none;transition:.18s}input:focus,select:focus,textarea:focus{border-color:#7185ff;box-shadow:0 0 0 3px #7185ff20}input[type=date],input[type=time]{min-height:45px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.typegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.typeopt{position:relative}.typeopt input{position:absolute;opacity:0;pointer-events:none}.typeopt span{display:block;text-align:center;border:1px solid var(--line);border-radius:12px;padding:11px 5px;font-size:12px;font-weight:750;color:#5e6a7f;cursor:pointer;background:#fbfcff}.typeopt input:checked+span{border-color:#526dff;background:#eef0ff;color:#3f55d8;box-shadow:inset 0 0 0 1px #526dff}
+.timeblock{border:1px solid var(--line);background:#fafbfe;border-radius:14px;padding:13px;margin-bottom:9px}.timehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12px;font-weight:800}.timefields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.timefields .field{margin:0}.tinybtn{border:0;background:none;color:#66738b;font-size:12px;cursor:pointer;padding:3px}.addtime{border:1px dashed #b9c4d8;background:#f8f9ff;border-radius:11px;color:#5264d9;padding:10px 12px;font-weight:750;font-size:12px;cursor:pointer;width:100%}
+.primary{width:100%;border:0;border-radius:13px;background:linear-gradient(110deg,#526dff,#6e80ff);color:white;padding:14px 16px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 9px 20px #526dff35;transition:.18s}.primary:hover{transform:translateY(-1px);filter:brightness(1.03)}.secondary{border:1px solid var(--line);background:white;color:#536078;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:750;cursor:pointer}
+.listcard{position:sticky;top:16px}.count{background:#e9f8f2;color:#087e59;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}.empty{text-align:center;padding:32px 12px;color:#8994a7}.empty .emoji{font-size:30px;margin-bottom:8px}.entry{border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:9px}.entrytop{display:flex;justify-content:space-between;gap:10px;align-items:center}.entryname{font-size:13px;font-weight:800}.pill{font-size:10px;font-weight:800;padding:5px 8px;border-radius:999px;background:#eef0ff;color:#5264d9}.pill.krank{background:#fff0f1;color:#b83c52}.pill.urlaub{background:#fff5e6;color:#a96712}.entrymeta{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.5}.remove{border:0;background:#f5f6fa;color:#7c8799;border-radius:8px;width:27px;height:27px;cursor:pointer;font-size:15px}.listfoot{border-top:1px solid var(--line);padding-top:15px;margin-top:14px}.sendnote{font-size:11px;line-height:1.5;color:var(--muted);margin:10px 0 0}.settings{margin-top:18px}.settings summary{cursor:pointer;font-size:12px;color:#5e6a7f;font-weight:800;list-style:none;display:flex;justify-content:space-between}.settings summary::-webkit-details-marker{display:none}.settingsbody{padding-top:14px}.employeechips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.chip{font-size:11px;background:#f0f2f8;border-radius:999px;padding:6px 9px;display:flex;gap:7px;align-items:center}.chip button{border:0;background:none;color:#8b95a7;cursor:pointer;padding:0;font-size:14px}.addemployee{display:flex;gap:7px}.addemployee input{min-width:0}.addemployee button{white-space:nowrap}
+.notice{display:none;border-radius:12px;padding:12px 14px;font-size:12px;line-height:1.5;margin-top:12px}.notice.show{display:block}.notice.ok{background:#e9f8f2;color:#087e59}.notice.warn{background:#fff5e6;color:#8b5a12}.notice.err{background:#fff0f1;color:#a52f45}
+footer{text-align:center;color:#9aa4b5;font-size:11px;padding:0 18px 28px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.listcard{position:static}.card{padding:18px}header{padding:20px 18px}.hero{margin-top:22px}.brand h1{font-size:18px}}
+@media(max-width:390px){.grid2{gap:8px}.typegrid{gap:5px}.typeopt span{font-size:11px}.year{font-size:10px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div class="brand"><div class="logo">✦</div><div><div class="eyebrow">Teamplanung</div><h1>Feiertagsplaner</h1></div></div><div class="year">WEIHNACHTEN · 2026/27</div></div>
+ <div class="hero"><h2>Gemeinsam gut<br>durch die Feiertage.</h2><p>Arbeitszeiten und Verhinderungen zentral erfassen – übersichtlich, schnell und direkt für die Dienstplanung.</p></div>
+</header>
+<main>
+ <div class="layout">
+  <section class="card">
+   <div class="cardhead"><div><h3>Neuen Eintrag erfassen</h3><p class="sub">Mitarbeiter, Zeitraum und Einsatz festlegen.</p></div><span class="step">SCHRITT 1</span></div>
+   <div class="field"><label for="employee">Mitarbeiter</label><select id="employee"><option value="">Mitarbeiter auswählen …</option></select></div>
+   <div class="field"><label>Eintrag</label><div class="typegrid">
+    <label class="typeopt"><input type="radio" name="kind" value="Arbeitszeit" checked><span>◷ Arbeit</span></label>
+    <label class="typeopt"><input type="radio" name="kind" value="Krank"><span>＋ Krank</span></label>
+    <label class="typeopt"><input type="radio" name="kind" value="Urlaub"><span>☀ Urlaub</span></label>
+   </div></div>
+   <div class="grid2">
+    <div class="field"><label for="fromDate">Datum von</label><input id="fromDate" type="date" value="2026-12-24"></div>
+    <div class="field"><label for="toDate">Datum bis</label><input id="toDate" type="date" value="2026-12-24"></div>
+   </div>
+   <div id="workTimes">
+    <div class="cardhead" style="margin:3px 0 10px"><div><h3 style="font-size:13px">Arbeitszeiten</h3><p class="sub">Bis zu drei Zeitblöcke pro Tag.</p></div></div>
+    <div id="timeBlocks">
+     <div class="timeblock" data-block="1"><div class="timehead"><span>ZEITBLOCK 1</span></div><div class="timefields"><div class="field"><label>Von</label><input type="time" class="timefrom" value="08:00"></div><div class="field"><label>Bis</label><input type="time" class="timeto" value="16:00"></div></div></div>
+    </div>
+    <button class="addtime" id="addTime" type="button">＋ Weitere Arbeitszeit hinzufügen</button>
+   </div>
+   <div class="field" style="margin-top:16px"><label for="note">Bemerkung <span style="font-weight:400;color:#8994a7">(optional)</span></label><input id="note" type="text" maxlength="160" placeholder="z. B. nur nachmittags, Wunschdienst …"></div>
+   <button class="primary" id="addEntry" type="button">＋ Zur Sammelliste hinzufügen</button>
+   <div class="notice" id="formNotice" role="status"></div>
+   <details class="settings">
+    <summary><span>⚙ Mitarbeiter verwalten</span><span>＋</span></summary>
+    <div class="settingsbody">
+     <p class="sub">Namen einmal eintragen. Sie bleiben auf diesem Gerät gespeichert.</p>
+     <div class="addemployee"><input id="newEmployee" type="text" maxlength="60" placeholder="Neuen Namen eingeben"><button class="secondary" id="addEmployee" type="button">Hinzufügen</button></div>
+     <div class="employeechips" id="employeeChips"></div>
+    </div>
+   </details>
+  </section>
+  <aside class="card listcard">
+   <div class="cardhead"><div><h3>Deine Sammelliste</h3><p class="sub">Ein Datensatz je Mitarbeiter und Kalendertag.</p></div><span class="count" id="entryCount">0 Tage</span></div>
+   <div id="entries"><div class="empty"><div class="emoji">🗓️</div><strong>Noch nichts eingetragen</strong><div class="sub">Deine hinzugefügten Tage erscheinen hier.</div></div></div>
+   <div class="listfoot"><button class="primary" id="sendEntries" type="button" disabled>Alle Einträge an Google Sheets senden&nbsp; →</button><p class="sendnote">Die Einträge werden gesammelt und anschließend über Make an dein Google Sheet übertragen. Nach erfolgreicher Übermittlung wird die Liste geleert.</p><div class="notice" id="sendNotice" role="status"></div><button class="secondary" id="clearEntries" type="button" style="width:100%;margin-top:10px" disabled>Sammelliste leeren</button></div>
+  </aside>
+ </div>
+</main>
+<footer>Feiertagsplaner · Deine Einträge werden lokal zwischengespeichert, bis du sie sendest.</footer>
+<script>
+const WEBHOOK_URL = "https://hook.eu1.make.com/unbbq8mubw4d6nqsayng5xufr9tae4mf";
+const $ = id => document.getElementById(id);
+const STORE_EMP = "feiertagsplaner_employees_v1", STORE_ENT = "feiertagsplaner_entries_v1";
+let employees = JSON.parse(localStorage.getItem(STORE_EMP) || "[]");
+let entries = JSON.parse(localStorage.getItem(STORE_ENT) || "[]");
+let blockCount = 1;
+const save = () => {localStorage.setItem(STORE_EMP,JSON.stringify(employees));localStorage.setItem(STORE_ENT,JSON.stringify(entries));};
+function selectedKind(){return document.querySelector('input[name="kind"]:checked').value}
+function showNotice(el,msg,kind="ok"){el.textContent=msg;el.className="notice show "+kind}
+function renderEmployees(){
+ const sel=$("employee"), current=sel.value;
+ sel.innerHTML='<option value="">Mitarbeiter auswählen …</option>';
+ employees.forEach(n=>{const o=document.createElement("option");o.value=n;o.textContent=n;sel.append(o)});
+ if(employees.includes(current))sel.value=current;
+ $("employeeChips").innerHTML="";
+ employees.forEach(n=>{const chip=document.createElement("span");chip.className="chip";chip.append(document.createTextNode(n));const b=document.createElement("button");b.type="button";b.textContent="×";b.title=n+" entfernen";b.onclick=()=>{if(entries.some(e=>e.Mitarbeiter===n)){alert("Für diesen Mitarbeiter liegen noch Einträge in der Sammelliste. Bitte erst diese Einträge entfernen oder senden.");return;}employees=employees.filter(x=>x!==n);save();renderEmployees()};chip.append(b);$("employeeChips").append(chip)});
+}
+function renderEntries(){
+ $("entryCount").textContent=entries.length+" "+(entries.length===1?"Tag":"Tage");
+ $("sendEntries").disabled=!entries.length;$("clearEntries").disabled=!entries.length;
+ const root=$("entries");root.innerHTML="";
+ if(!entries.length){root.innerHTML='<div class="empty"><div class="emoji">🗓️</div><strong>Noch nichts eingetragen</strong><div class="sub">Deine hinzugefügten Tage erscheinen hier.</div></div>';return}
+ entries.forEach((e,i)=>{
+  const box=document.createElement("div");box.className="entry";
+  const top=document.createElement("div");top.className="entrytop";
+  const name=document.createElement("div");name.className="entryname";name.textContent=e.Mitarbeiter;
+  const right=document.createElement("div");right.style.display="flex";right.style.gap="7px";right.style.alignItems="center";
+  const pill=document.createElement("span");pill.className="pill "+(e.Eintragstyp==="Krank"?"krank":e.Eintragstyp==="Urlaub"?"urlaub":"");pill.textContent=e.Eintragstyp;
+  const rm=document.createElement("button");rm.className="remove";rm.textContent="×";rm.title="Eintrag entfernen";rm.onclick=()=>{entries.splice(i,1);save();renderEntries()};
+  right.append(pill,rm);top.append(name,right);
+  const meta=document.createElement("div");meta.className="entrymeta";
+  const times=e.Eintragstyp==="Arbeitszeit"?[1,2,3].map(k=>e["Arbeitszeit_"+k+"_von"]?e["Arbeitszeit_"+k+"_von"]+"–"+e["Arbeitszeit_"+k+"_bis"]:null).filter(Boolean).join(" · "):"";
+  meta.textContent=new Date(e.Datum+"T12:00:00").toLocaleDateString("de-DE",{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"})+(times?" · "+times:"")+(e.Bemerkung?" · "+e.Bemerkung:"");
+  box.append(top,meta);root.append(box);
+ });
+}
+function refreshType(){const work=selectedKind()==="Arbeitszeit";$("workTimes").style.display=work?"block":"none"}
+document.querySelectorAll('input[name="kind"]').forEach(r=>r.addEventListener("change",refreshType));
+$("addTime").onclick=()=>{
+ if(blockCount>=3)return;
+ blockCount++;
+ const d=document.createElement("div");d.className="timeblock";d.dataset.block=blockCount;
+ d.innerHTML=`<div class="timehead"><span>ZEITBLOCK ${blockCount}</span><button type="button" class="tinybtn">Entfernen ×</button></div><div class="timefields"><div class="field"><label>Von</label><input type="time" class="timefrom"></div><div class="field"><label>Bis</label><input type="time" class="timeto"></div></div>`;
+ d.querySelector("button").onclick=()=>{d.remove();blockCount=$("timeBlocks").children.length;$("timeBlocks").querySelectorAll(".timeblock").forEach((b,i)=>b.querySelector(".timehead span").textContent="ZEITBLOCK "+(i+1));$("addTime").style.display=blockCount>=3?"none":"block"};
+ $("timeBlocks").append(d);if(blockCount>=3)$("addTime").style.display="none";
+};
+function dateList(start,end){const out=[];let d=new Date(start+"T12:00:00"),last=new Date(end+"T12:00:00");while(d<=last){out.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}return out}
+$("addEntry").onclick=()=>{
+ $("formNotice").className="notice";
+ const emp=$("employee").value,kind=selectedKind(),from=$("fromDate").value,to=$("toDate").value;
+ if(!emp)return showNotice($("formNotice"),"Bitte zuerst einen Mitarbeiter auswählen.","err");
+ if(!from||!to||to<from)return showNotice($("formNotice"),"Bitte einen gültigen Datumsbereich eingeben.","err");
+ let blocks=[];
+ if(kind==="Arbeitszeit"){
+  for(const el of $("timeBlocks").querySelectorAll(".timeblock")){
+   const a=el.querySelector(".timefrom").value,b=el.querySelector(".timeto").value;
+   if(!a&&!b)continue;
+   if(!a||!b||a===b)return showNotice($("formNotice"),"Bitte bei jedem Zeitblock eine gültige Von- und Bis-Uhrzeit eintragen. Bei Nachtdiensten darf die Endzeit auch am Folgetag liegen.","err");
+   blocks.push([a,b]);
+  }
+  if(!blocks.length)return showNotice($("formNotice"),"Bitte mindestens einen Arbeitszeitblock angeben.","err");
+ }
+ const days=dateList(from,to), note=$("note").value.trim();
+ const additions=[];
+ for(const day of days){
+  const row={Mitarbeiter:emp,Eintragstyp:kind,Datum:day,Arbeitszeit_1_von:blocks[0]?.[0]||"",Arbeitszeit_1_bis:blocks[0]?.[1]||"",Arbeitszeit_2_von:blocks[1]?.[0]||"",Arbeitszeit_2_bis:blocks[1]?.[1]||"",Arbeitszeit_3_von:blocks[2]?.[0]||"",Arbeitszeit_3_bis:blocks[2]?.[1]||"",Bemerkung:note};
+  const existing=entries.find(e=>e.Mitarbeiter===emp&&e.Datum===day);
+  if(existing){
+   if(existing.Eintragstyp!==kind)return showNotice($("formNotice"),emp+" hat am "+new Date(day+"T12:00:00").toLocaleDateString("de-DE")+" bereits einen anderen Eintrag. Bitte zuerst den vorhandenen Eintrag entfernen.","err");
+   if(kind==="Arbeitszeit"){
+    const old=[1,2,3].map(k=>existing["Arbeitszeit_"+k+"_von"]?[existing["Arbeitszeit_"+k+"_von"],existing["Arbeitszeit_"+k+"_bis"]]:null).filter(Boolean);
+    if(old.length+blocks.length>3)return showNotice($("formNotice"),"Für "+emp+" am "+new Date(day+"T12:00:00").toLocaleDateString("de-DE")+" sind maximal drei Arbeitszeitblöcke möglich.","err");
+    const merged=old.concat(blocks);
+    [1,2,3].forEach((k,i)=>{row["Arbeitszeit_"+k+"_von"]=merged[i]?.[0]||"";row["Arbeitszeit_"+k+"_bis"]=merged[i]?.[1]||""});
+    const idx=entries.indexOf(existing);additions.push({idx,row});
+   } else return showNotice($("formNotice"),"Für diesen Mitarbeiter und Tag gibt es bereits einen Eintrag.","err");
+  } else additions.push({idx:-1,row});
+ }
+ additions.forEach(({idx,row})=>{if(idx>=0)entries[idx]=row;else entries.push(row)});
+ save();renderEntries();showNotice($("formNotice"),days.length+" Tages"+(days.length===1?"eintrag":"einträge")+" hinzugefügt.","ok");
+ $("note").value="";
+};
+$("addEmployee").onclick=()=>{const n=$("newEmployee").value.trim();if(!n)return;if(employees.some(x=>x.toLocaleLowerCase()===n.toLocaleLowerCase()))return alert("Dieser Mitarbeiter ist bereits vorhanden.");employees.push(n);employees.sort((a,b)=>a.localeCompare(b,"de"));$("newEmployee").value="";save();renderEmployees();$("employee").value=n};
+$("newEmployee").addEventListener("keydown",e=>{if(e.key==="Enter")$("addEmployee").click()});
+$("clearEntries").onclick=()=>{if(confirm("Möchtest du wirklich alle noch nicht gesendeten Einträge löschen?")){entries=[];save();renderEntries();$("sendNotice").className="notice"}};
+$("sendEntries").onclick=async()=>{
+ if(!entries.length)return;
+ const btn=$("sendEntries");btn.disabled=true;btn.textContent="Übertragung läuft …";$("sendNotice").className="notice";
+ const payload={source:"Feiertagsplaner PWA",submittedAt:new Date().toISOString(),entries:entries};
+ try{
+  const response=await fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload)});
+  if(!response.ok)throw new Error("Webhook meldet HTTP "+response.status);
+  entries=[];save();renderEntries();showNotice($("sendNotice"),"Die Einträge wurden an Make übermittelt. Bitte kontrolliere beim ersten Test den Eingang in Make und Google Sheets.","ok");
+ }catch(err){
+  showNotice($("sendNotice"),"Die Übermittlung konnte vom Browser nicht eindeutig bestätigt werden. Die Einträge bleiben sicher in dieser Sammelliste. Prüfe den Make-Eingang, bevor du erneut sendest, damit keine Doppelungen entstehen. Details: "+err.message,"warn");
+ }finally{btn.disabled=!entries.length;btn.textContent="Alle Einträge an Google Sheets senden  →"}
+};
+renderEmployees();renderEntries();refreshType();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body>
+</html>

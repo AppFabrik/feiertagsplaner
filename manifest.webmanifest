@@ -1,0 +1,9 @@
+{
+  "name": "Feiertagsplaner – Team",
+  "short_name": "Feiertagsplaner",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#101827",
+  "description": "Arbeitszeiten und Verhinderungen für die Feiertagsplanung erfassen."
+}
